@@ -256,18 +256,13 @@
     reader.readAsDataURL(event.target.files[0]);
   }
 
-  // Countdown Logic
-  const Purposed Date = new Date("2025-05-12T00:00:00");
+  // 💖 Countdown Since May 12, 2023
+  const purposeDate = new Date("2023-05-12T00:00:00");
   const countdownEl = document.getElementById("countdown");
 
   function updateCountdown() {
     const now = new Date();
-    let diff = Purpose Date - now;
-
-    if (diff < 0) {
-      countdownEl.textContent = "TO MY BITU ! 🎉";
-      return;
-    }
+    let diff = now - purposeDate;
 
     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
     const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
@@ -275,8 +270,9 @@
     const seconds = Math.floor((diff / 1000) % 60);
 
     countdownEl.textContent = 
-      `${days} days, ${hours} hrs, ${minutes} min, ${seconds} sec until our Purpose day 💕`;
+      `Together for ${days} days, ${hours} hrs, ${minutes} min, ${seconds} sec 💞`;
   }
 
+  updateCountdown(); // Initial call
   setInterval(updateCountdown, 1000);
 </script>
