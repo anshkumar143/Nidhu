@@ -114,17 +114,10 @@
       margin-top: 20px;
     }
 
-    #imagePreview img,
-    #multiImagePreview img {
+    #imagePreview img {
       max-width: 100%;
       margin-top: 20px;
       border-radius: 10px;
-    }
-
-    #multiImagePreview img {
-      max-width: 48%;
-      margin: 1%;
-      display: inline-block;
     }
 
     #passwordPage {
@@ -195,30 +188,18 @@
     </div>
   </div>
 
-  <!-- Photo Page (single image) -->
+  <!-- Photo Page -->
   <div class="page" id="page2">
     <h2>Special Memories 📸</h2>
 <p>Here's one of our favorite memories together:</p>
 
 <!-- 💖 Permanent photo -->
-<img src=<img width="1080" height="1706" alt="fingure-love png" src="https://github.com/user-attachments/assets/92ae5373-cf3c-4da8-8dc0-ad52de0d0f5a" />
+<img src=<img width="1080" height="1706" alt="fingure-love png" src="https://github.com/user-attachments/assets/34faf0b8-7df6-40f9-bf37-026ff76073a5" />
  alt="Us together" style="width: 100%; max-width: 500px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 30px;">
 
 <p>Select a photo to add to our diary:</p>
 <input type="file" accept="image/*" onchange="previewImage(event)">
 <div id="imagePreview"></div>
-
-  <!-- Multi-photo upload page -->
-  <div class="page" id="page4">
-    <h2>More Memories Together 📷</h2>
-    <p>Upload multiple pictures to add more love to our diary:</p>
-    <input type="file" accept="image/*" multiple onchange="previewMultipleImages(event)">
-    <div id="multiImagePreview"></div>
-    <div class="nav">
-      <button onclick="goToPage(2)">← Back</button>
-      <button onclick="goToPage(3)">Next →</button>
-    </div>
-  </div>
 
   <!-- Final Letter -->
   <div class="page" id="page3">
@@ -229,7 +210,7 @@
     <p style="font-size: 1.4em; text-align: center; color: #e91e63;"><strong>I love you sooo much ❤️</strong></p>
     <div class="signature">Yours always,<br>💖</div>
     <div class="nav">
-      <button onclick="goToPage(4)">← Back</button>
+      <button onclick="goToPage(2)">← Back</button>
     </div>
   </div>
 
@@ -239,45 +220,35 @@
   </audio>
 
   <script>
-          let diff = anniversaryDate - now;
-      let prefix = "Time until our anniversary: ";
-
-      if (diff < 0) {
-        diff = now - anniversaryDate;
-        prefix = "Time since our anniversary: ";
+    function checkPassword() {
+      const input = document.getElementById('passwordInput').value;
+      if (input === "nidhu") {
+        document.getElementById("passwordPage").style.display = "none";
+        document.getElementById("page0").classList.add("active");
+      } else {
+        alert("Wrong password 💔");
       }
-
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
-
-      countdownEl.innerHTML = `${prefix} ${days}d ${hours}h ${minutes}m ${seconds}s`;
     }
 
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-
-    // Keep photo saved using localStorage
-    window.onload = function() {
-      const savedImage = localStorage.getItem("savedImage");
-      if (savedImage) {
-        document.getElementById('imagePreview').innerHTML = `<img src="${savedImage}" alt="Saved image">`;
-      }
-    };
+    function goToPage(n) {
+      const pages = document.querySelectorAll('.page');
+      pages.forEach(page => page.classList.remove('active'));
+      document.getElementById('page' + n).classList.add('active');
+    }
 
     function previewImage(event) {
       const reader = new FileReader();
-      reader.onload = function () {
-        const imageUrl = reader.result;
+      reader.onload = function() {
         const output = document.getElementById('imagePreview');
-        output.innerHTML = `<img src="${imageUrl}" alt="Uploaded image">`;
-        localStorage.setItem("savedImage", imageUrl);
+        output.innerHTML = `<img src="${reader.result}" alt="Uploaded image">`;
       };
       reader.readAsDataURL(event.target.files[0]);
     }
-  </script>
 
-  </script>
-</body>
-</html>
+    // Countdown Logic
+    const anniversaryDate = new Date("2025-05-12T00:00:00");
+    const countdownEl = document.getElementById("countdown");
+
+    function updateCountdown() {
+      const now = new Date();
+      let diff = anniversary
