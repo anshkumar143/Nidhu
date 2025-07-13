@@ -2,161 +2,150 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>For Nidhi Princess 🌟</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nidhi’s Love Diary 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Sacramento&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      background: radial-gradient(circle at top, #1a1a2e, #0f0f1c);
-      color: #fff;
+      background: linear-gradient(to right, #ffe0ec, #ffd6e8);
       font-family: 'Playfair Display', serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      overflow: hidden;
-      position: relative;
-      text-align: center;
+      overflow-x: hidden;
     }
 
-    .letter-box {
-      background: rgba(255, 255, 255, 0.1);
-      border: 2px solid rgba(255, 255, 255, 0.2);
-      padding: 40px;
-      border-radius: 15px;
-      backdrop-filter: blur(8px);
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-      max-width: 600px;
-      z-index: 1;
+    .page {
+      display: none;
+      padding: 60px 20px;
+      max-width: 700px;
+      margin: auto;
+      min-height: 100vh;
+      box-sizing: border-box;
     }
 
-    h1 {
+    .page.active {
+      display: block;
+    }
+
+    h1, h2 {
       font-family: 'Sacramento', cursive;
       font-size: 3em;
-      color: #ff9aa2;
-      margin-bottom: 10px;
+      color: #e91e63;
+      text-align: center;
     }
 
     p {
       font-size: 1.2em;
       line-height: 1.8;
+      color: #333;
+      text-align: justify;
       margin: 20px 0;
-      color: #f8f8f8;
     }
 
     .signature {
-      font-family: 'Sacramento', cursive;
-      font-size: 2em;
-      color: #f7c8e0;
-      margin-top: 30px;
+      text-align: right;
+      font-size: 1.5em;
+      margin-top: 40px;
+      color: #c2185b;
     }
 
-    .heart-glow {
-      position: absolute;
-      bottom: 40px;
-      left: 50%;
-      transform: translateX(-50%) rotate(45deg);
-      width: 60px;
-      height: 60px;
-      background: #ff4d6d;
-      box-shadow: 0 0 25px #ff4d6d, 0 0 50px #ff4d6d;
-      animation: pulse 2s infinite;
+    .nav {
+      text-align: center;
+      margin-top: 40px;
     }
 
-    .heart-glow::before,
-    .heart-glow::after {
-      content: '';
-      position: absolute;
-      width: 60px;
-      height: 60px;
-      background: #ff4d6d;
-      border-radius: 50%;
-    }
-
-    .heart-glow::before {
-      top: -30px;
-      left: 0;
-    }
-
-    .heart-glow::after {
-      left: -30px;
-      top: 0;
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1) rotate(45deg); }
-      50% { transform: scale(1.2) rotate(45deg); }
-      100% { transform: scale(1) rotate(45deg); }
-    }
-
-    .stars {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      overflow: hidden;
-      z-index: 0;
-    }
-
-    .stars span {
-      position: absolute;
-      background: white;
-      border-radius: 50%;
-      animation: twinkle 5s infinite ease-in-out;
-    }
-
-    @keyframes twinkle {
-      0%, 100% { opacity: 0.2; }
-      50% { opacity: 1; }
-    }
-
-    .forgive-button {
-      margin-top: 30px;
-    }
-
-    .forgive-button button {
-      padding: 15px 30px;
-      font-size: 1.2em;
-      background-color: #ff9aa2;
-      color: #fff;
+    .nav button {
+      background: #e91e63;
+      color: white;
       border: none;
+      padding: 12px 25px;
       border-radius: 30px;
+      font-size: 1em;
+      margin: 5px;
       cursor: pointer;
-      box-shadow: 0 5px 15px rgba(255, 154, 162, 0.4);
-      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      transition: 0.3s ease;
     }
 
-    .forgive-button button:hover {
-      background-color: #ff6b81;
-      transform: scale(1.05);
+    .nav button:hover {
+      background: #c2185b;
+    }
+
+    .cover {
+      background: linear-gradient(to bottom right, #fff0f5, #ffe6eb);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      height: 100vh;
+    }
+
+    .cover h1 {
+      font-size: 4em;
+      color: #e91e63;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .cover button {
+      margin-top: 30px;
+      font-size: 1.3em;
+      padding: 15px 40px;
+      background: #ff85a2;
+      border: none;
+      color: white;
+      border-radius: 40px;
+      cursor: pointer;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+    .cover button:hover {
+      background: #e75376;
+    }
+
+    #countdown {
+      font-size: 1.2em;
+      color: #c2185b;
+      margin-top: 20px;
+    }
+
+    audio {
+      display: none;
     }
   </style>
 </head>
 <body>
-  <audio autoplay loop>
-    <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
 
-  <div class="stars">
-    <script>
-      for (let i = 0; i < 60; i++) {
-        const star = document.createElement('span');
-        const size = Math.random() * 3 + 1;
-        star.style.width = size + 'px';
-        star.style.height = size + 'px';
-        star.style.left = Math.random() * 100 + 'vw';
-        star.style.top = Math.random() * 100 + 'vh';
-        star.style.animationDuration = (Math.random() * 5 + 3) + 's';
-        document.querySelector('.stars').appendChild(star);
-      }
-    </script>
+  <!-- Cover Page -->
+  <div class="page cover active" id="page0">
+    <h1>Nidhi’s Love Diary 💖</h1>
+    <p>A collection of love, apologies, and endless affection...</p>
+    <div id="countdown">Loading countdown...</div>
+    <button onclick="goToPage(1)">Open Diary 📖</button>
   </div>
 
-  <div class="letter-box">
-    <h1>My Sweet Nidhi Princess 💫</h1>
+  <!-- Letter 1 -->
+  <div class="page" id="page1">
+    <h2>Letter 1: From My Heart to Yours</h2>
+    <p>Dearest Nidhi Princess,</p>
+    <p>
+      I don’t know where to begin, because no words can truly capture how much you mean to me. Every moment with you is like a dream I never want to wake up from. You’ve filled my life with joy, light, and a kind of love I never knew was possible.
+    </p>
+    <p>
+      Your smile brightens my darkest days, and your voice is my favorite melody. I’m sorry for anything I’ve done to hurt you — it was never my intention. You deserve to be treated like the queen you are, my sweet Nidhi Princess.
+    </p>
+    <p>
+      I want you to know that my heart beats only for you. You are my sunshine, my moonlight, my everything. Let’s create beautiful memories together, laugh until we cry, and love endlessly.
+    </p>
+    <div class="signature">Forever Yours,<br>Your Love 💌</div>
+    <div class="nav">
+      <button onclick="goToPage(0)">← Back</button>
+      <button onclick="goToPage(2)">Next →</button>
+    </div>
+  </div>
+
+  <!-- Letter 2 -->
+  <div class="page" id="page2">
+    <h2>Letter 2: My Starry Love 💫</h2>
     <p>
       You are the poetry in my silence, the light in my dusk, the warmth in my coldest nights. I don’t need the stars to wish upon — I already have my brightest one, and that’s you.
     </p>
@@ -167,17 +156,53 @@
       I may not be perfect, but my love for you is pure, endless, and true. Please forgive me if I’ve ever made you feel less than the queen you are. I will always cherish you, protect you, and love you beyond words.
     </p>
     <div class="signature">With all my love,<br>Your Forever ❤️</div>
-    <div class="forgive-button">
-      <button onclick="forgiveMe()">Forgive Me, Nidhi? 💗</button>
+    <div class="nav">
+      <button onclick="goToPage(1)">← Back</button>
+      <button onclick="forgiveMe()">💗 Forgive Me</button>
     </div>
   </div>
 
-  <div class="heart-glow"></div>
+  <!-- Background Music -->
+  <audio autoplay loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
 
   <script>
-    function forgiveMe() {
-      alert("Aww, thank you for forgiving me, my Princess! ❤️\nYou made my world whole again.");
+    function goToPage(n) {
+      const pages = document.querySelectorAll('.page');
+      pages.forEach(page => page.classList.remove('active'));
+      document.getElementById('page' + n).classList.add('active');
     }
+
+    function forgiveMe() {
+      alert("Thank you, my Nidhi Princess 💖\nYou've made me the happiest person alive.");
+    }
+
+    // Countdown Logic
+    const anniversaryDate = new Date("2025-05-12T00:00:00");
+    const countdownEl = document.getElementById("countdown");
+
+    function updateCountdown() {
+      const now = new Date();
+      let diff = anniversaryDate - now;
+      let prefix = "Time until our anniversary: ";
+
+      if (diff < 0) {
+        diff = now - anniversaryDate;
+        prefix = "Time since our anniversary: ";
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      countdownEl.innerHTML = `${prefix} ${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
   </script>
 </body>
 </html>
