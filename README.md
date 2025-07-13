@@ -165,9 +165,9 @@
 
   <!-- Cover Page -->
   <div class="page cover" id="page0">
-    <h1>Nidhi’s Love Diary 💖</h1>
+    <h1>Nidhu betu Diary 💖</h1>
     <p>A collection of love, apologies, and endless affection...</p>
-    <div id="countdown">Loading countdown...</div>
+    <div id="countdown">Loading count...</div>
     <button onclick="goToPage(1)">Open Diary 📖</button>
   </div>
 
@@ -257,15 +257,15 @@
   }
 
   // Countdown Logic
-  const anniversaryDate = new Date("2025-05-12T00:00:00");
+  const Purposed Date = new Date("2025-05-12T00:00:00");
   const countdownEl = document.getElementById("countdown");
 
   function updateCountdown() {
     const now = new Date();
-    let diff = anniversaryDate - now;
+    let diff = Purpose Date - now;
 
     if (diff < 0) {
-      countdownEl.textContent = "Happy Anniversary! 🎉";
+      countdownEl.textContent = "TO MY BITU ! 🎉";
       return;
     }
 
@@ -275,7 +275,7 @@
     const seconds = Math.floor((diff / 1000) % 60);
 
     countdownEl.textContent = 
-      `${days} days, ${hours} hrs, ${minutes} min, ${seconds} sec until our anniversary 💕`;
+      `${days} days, ${hours} hrs, ${minutes} min, ${seconds} sec until our Purpose day 💕`;
   }
 
   setInterval(updateCountdown, 1000);
