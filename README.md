@@ -17,6 +17,7 @@
       height: 100vh;
       overflow: hidden;
       position: relative;
+      text-align: center;
     }
 
     .letter-box {
@@ -27,7 +28,7 @@
       backdrop-filter: blur(8px);
       box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
       max-width: 600px;
-      text-align: center;
+      z-index: 1;
     }
 
     h1 {
@@ -48,18 +49,17 @@
       font-family: 'Sacramento', cursive;
       font-size: 2em;
       color: #f7c8e0;
-      margin-top: 40px;
+      margin-top: 30px;
     }
 
     .heart-glow {
       position: absolute;
       bottom: 40px;
       left: 50%;
-      transform: translateX(-50%);
+      transform: translateX(-50%) rotate(45deg);
       width: 60px;
       height: 60px;
       background: #ff4d6d;
-      transform: rotate(45deg);
       box-shadow: 0 0 25px #ff4d6d, 0 0 50px #ff4d6d;
       animation: pulse 2s infinite;
     }
@@ -111,9 +111,35 @@
       0%, 100% { opacity: 0.2; }
       50% { opacity: 1; }
     }
+
+    .forgive-button {
+      margin-top: 30px;
+    }
+
+    .forgive-button button {
+      padding: 15px 30px;
+      font-size: 1.2em;
+      background-color: #ff9aa2;
+      color: #fff;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(255, 154, 162, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .forgive-button button:hover {
+      background-color: #ff6b81;
+      transform: scale(1.05);
+    }
   </style>
 </head>
 <body>
+  <audio autoplay loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
   <div class="stars">
     <script>
       for (let i = 0; i < 60; i++) {
@@ -141,8 +167,17 @@
       I may not be perfect, but my love for you is pure, endless, and true. Please forgive me if I’ve ever made you feel less than the queen you are. I will always cherish you, protect you, and love you beyond words.
     </p>
     <div class="signature">With all my love,<br>Your Forever ❤️</div>
+    <div class="forgive-button">
+      <button onclick="forgiveMe()">Forgive Me, Nidhi? 💗</button>
+    </div>
   </div>
 
   <div class="heart-glow"></div>
+
+  <script>
+    function forgiveMe() {
+      alert("Aww, thank you for forgiving me, my Princess! ❤️\nYou made my world whole again.");
+    }
+  </script>
 </body>
 </html>
