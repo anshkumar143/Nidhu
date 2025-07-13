@@ -194,11 +194,12 @@
   <p>Here's one of our favorite memories together:</p>
 
   <!-- 💖 Permanent image -->
-  <img 
-    src=https://i.postimg.cc/MKm7FrZC/Screenshot-2025-0618-142257.png 
-    alt="Us together" 
-    style="width: 100%; max-width: 500px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 30px;"
-  >
+ <img 
+  src="https://i.postimg.cc/MKm7FrZC/Screenshot-2025-0618-142257.png" 
+  alt="Us together" 
+  style="width: 100%; max-width: 500px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 30px;"
+>
+
 
   <p>You can also add another photo here:</p>
   <input type="file" accept="image/*" onchange="previewImage(event)">
@@ -230,35 +231,52 @@
   </audio>
 
   <script>
-    function checkPassword() {
-      const input = document.getElementById('passwordInput').value;
-      if (input === "nidhu") {
-        document.getElementById("passwordPage").style.display = "none";
-        document.getElementById("page0").classList.add("active");
-      } else {
-        alert("Wrong password 💔");
-      }
+  function checkPassword() {
+    const input = document.getElementById('passwordInput').value;
+    if (input === "nidhu") {
+      document.getElementById("passwordPage").style.display = "none";
+      document.getElementById("page0").classList.add("active");
+    } else {
+      alert("Wrong password 💔");
+    }
+  }
+
+  function goToPage(n) {
+    const pages = document.querySelectorAll('.page');
+    pages.forEach(page => page.classList.remove('active'));
+    document.getElementById('page' + n).classList.add('active');
+  }
+
+  function previewImage(event) {
+    const reader = new FileReader();
+    reader.onload = function () {
+      const output = document.getElementById('imagePreview');
+      output.innerHTML = `<img src="${reader.result}" alt="Uploaded image">`;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  }
+
+  // Countdown Logic
+  const anniversaryDate = new Date("2025-05-12T00:00:00");
+  const countdownEl = document.getElementById("countdown");
+
+  function updateCountdown() {
+    const now = new Date();
+    let diff = anniversaryDate - now;
+
+    if (diff < 0) {
+      countdownEl.textContent = "Happy Anniversary! 🎉";
+      return;
     }
 
-    function goToPage(n) {
-      const pages = document.querySelectorAll('.page');
-      pages.forEach(page => page.classList.remove('active'));
-      document.getElementById('page' + n).classList.add('active');
-    }
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / 1000 / 60) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
 
-    function previewImage(event) {
-      const reader = new FileReader();
-      reader.onload = function() {
-        const output = document.getElementById('imagePreview');
-        output.innerHTML = <img src="${reader.result}" alt="Uploaded image">;
-      };
-      reader.readAsDataURL(event.target.files[0]);
-    }
+    countdownEl.textContent = 
+      `${days} days, ${hours} hrs, ${minutes} min, ${seconds} sec until our anniversary 💕`;
+  }
 
-    // Countdown Logic
-    const anniversaryDate = new Date("2025-05-12T00:00:00");
-    const countdownEl = document.getElementById("countdown");
-
-    function updateCountdown() {
-      const now = new Date();
-      let diff = anniversary
+  setInterval(updateCountdown, 1000);
+</script>
