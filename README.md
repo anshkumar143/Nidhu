@@ -24,12 +24,6 @@
 
     .page.active {
       display: block;
-      animation: fadeIn 0.6s ease-in-out;
-    }
-
-    @keyframes fadeIn {
-      from {opacity: 0;}
-      to {opacity: 1;}
     }
 
     h1, h2 {
@@ -44,7 +38,6 @@
       line-height: 1.8;
       color: #333;
       text-align: justify;
-      margin: 20px 0;
     }
 
     .signature {
@@ -76,7 +69,7 @@
       background: #c2185b;
     }
 
-    .cover {
+    .cover, .lock-screen {
       background: linear-gradient(to bottom right, #fff0f5, #ffe6eb);
       display: flex;
       flex-direction: column;
@@ -86,13 +79,12 @@
       height: 100vh;
     }
 
-    .cover h1 {
+    .cover h1, .lock-screen h1 {
       font-size: 4em;
       color: #e91e63;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
     }
 
-    .cover button {
+    .cover button, .lock-screen button {
       margin-top: 30px;
       font-size: 1.3em;
       padding: 15px 40px;
@@ -104,7 +96,7 @@
       box-shadow: 0 10px 20px rgba(0,0,0,0.2);
     }
 
-    .cover button:hover {
+    .cover button:hover, .lock-screen button:hover {
       background: #e75376;
     }
 
@@ -114,59 +106,25 @@
       margin-top: 20px;
     }
 
-    #imagePreview img,
-    #multiImagePreview img {
-      max-width: 100%;
-      margin-top: 20px;
-      border-radius: 10px;
-    }
-
-    #multiImagePreview img {
-      max-width: 48%;
-      margin: 1%;
-      display: inline-block;
-    }
-
-    #passwordPage {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background: #ffe9f0;
-    }
-
-    #passwordPage input {
-      padding: 12px 20px;
-      font-size: 1em;
-      margin-top: 20px;
-      border-radius: 20px;
-      border: 1px solid #e91e63;
-      outline: none;
-    }
-
-    #passwordPage button {
-      margin-top: 20px;
-      padding: 10px 25px;
-      font-size: 1em;
-      background-color: #e91e63;
-      color: white;
-      border: none;
-      border-radius: 20px;
-      cursor: pointer;
-    }
-
     audio {
       display: none;
+    }
+
+    .images-area img {
+      max-width: 100%;
+      margin: 10px 0;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     }
   </style>
 </head>
 <body>
 
-  <!-- Password Page -->
-  <div id="passwordPage">
-    <h1>Enter Password to Open Diary 🔐</h1>
-    <input type="password" id="passwordInput" placeholder="Enter password...">
+  <!-- Lock Screen -->
+  <div class="lock-screen" id="lockScreen">
+    <h1>💖 Welcome to Nidhi’s Diary 💖</h1>
+    <p>Please enter the password:</p>
+    <input type="password" id="passwordInput" placeholder="Enter password" />
     <button onclick="checkPassword()">Unlock</button>
   </div>
 
@@ -178,15 +136,18 @@
     <button onclick="goToPage(1)">Open Diary 📖</button>
   </div>
 
-  <!-- Letter 1 -->
+  <!-- Letter Page 1 -->
   <div class="page" id="page1">
     <h2>Letter 1: From My Heart to Yours</h2>
     <p>Dearest Nidhi Princess,</p>
     <p>
-      I don’t know where to begin, because no words can truly capture how much you mean to me. Every moment with you is like a dream I never want to wake up from. You’ve filled my life with joy, light, and a kind of love I never knew was possible.
+      I don’t know where to begin, because no words can truly capture how much you mean to me.
+      Every moment with you is like a dream I never want to wake up from. You’ve filled my life
+      with joy, light, and a kind of love I never knew was possible.
     </p>
     <p>
-      Your smile brightens my darkest days, and your voice is my favorite melody. I’m sorry for anything I’ve done to hurt you — it was never my intention. You deserve to be treated like the queen you are, my sweet Nidhi Princess.
+      I want you to know that my heart beats only for you. You are my sunshine, my moonlight, my everything.
+      Let’s create beautiful memories together, laugh until we cry, and love endlessly.
     </p>
     <div class="signature">Forever Yours,<br>Your Love 💌</div>
     <div class="nav">
@@ -195,99 +156,61 @@
     </div>
   </div>
 
-  <!-- Photo Page (single image) -->
+  <!-- Letter Page 2 -->
   <div class="page" id="page2">
-    <h2>Special Memories 📸</h2>
-    <p>Select a photo to add to our diary:</p>
-    <input type="file" accept="image/*" onchange="previewImage(event)">
-    <div id="imagePreview"></div>
+    <h2>Letter 2: My Starry Love 💫</h2>
+    <p>
+      You are the poetry in my silence, the light in my dusk, the warmth in my coldest nights.
+      I don’t need the stars to wish upon — I already have my brightest one, and that’s you.
+    </p>
+    <p>
+      Every heartbeat of mine spells your name. You are not just in my life — you are my life.
+    </p>
+    <div class="signature">With all my love,<br>Your Forever ❤️</div>
     <div class="nav">
       <button onclick="goToPage(1)">← Back</button>
-      <button onclick="goToPage(4)">Next →</button>
-    </div>
-  </div>
-
-  <!-- Multi-photo upload page -->
-  <div class="page" id="page4">
-    <h2>More Memories Together 📷</h2>
-    <p>Upload multiple pictures to add more love to our diary:</p>
-    <input type="file" accept="image/*" multiple onchange="previewMultipleImages(event)">
-    <div id="multiImagePreview"></div>
-    <div class="nav">
-      <button onclick="goToPage(2)">← Back</button>
       <button onclick="goToPage(3)">Next →</button>
     </div>
   </div>
 
-  <!-- Final Letter -->
+  <!-- Picture Page -->
   <div class="page" id="page3">
-    <h2>Thank You, My Lucky Charm ✨</h2>
-    <p>
-      Thku soooo much, my lucky charm, meri life mein aane ke liye. You’ve brought color, laughter, passion, and love. I never thought someone could make me feel so complete.
-    </p>
-    <p style="font-size: 1.4em; text-align: center; color: #e91e63;"><strong>I love you sooo much ❤️</strong></p>
-    <div class="signature">Yours always,<br>💖</div>
+    <h2>📸 Our Beautiful Moments</h2>
+    <input type="file" accept="image/*" onchange="handleImageUpload(event)">
+    <div class="images-area" id="imageGallery"></div>
     <div class="nav">
-      <button onclick="goToPage(4)">← Back</button>
+      <button onclick="goToPage(2)">← Back</button>
     </div>
   </div>
 
   <!-- Background Music -->
   <audio autoplay loop>
     <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
   </audio>
 
   <script>
+    // Password
+    const PASSWORD = "nidhu";
+
     function checkPassword() {
-      const input = document.getElementById('passwordInput').value;
-      if (input === "nidhu") {
-        document.getElementById("passwordPage").style.display = "none";
+      const entered = document.getElementById("passwordInput").value;
+      if (entered === PASSWORD) {
+        document.getElementById("lockScreen").style.display = "none";
         document.getElementById("page0").classList.add("active");
       } else {
-        alert("Wrong password 💔");
+        alert("Wrong password! Try again.");
       }
     }
 
+    // Page Navigation
     function goToPage(n) {
       const pages = document.querySelectorAll('.page');
       pages.forEach(page => page.classList.remove('active'));
       document.getElementById('page' + n).classList.add('active');
-      // Scroll top when page changes
-      window.scrollTo(0,0);
     }
 
-    function previewImage(event) {
-      const reader = new FileReader();
-      reader.onload = function() {
-        const output = document.getElementById('imagePreview');
-        output.innerHTML = `<img src="${reader.result}" alt="Uploaded image">`;
-      };
-      reader.readAsDataURL(event.target.files[0]);
-    }
-
-    function previewMultipleImages(event) {
-      const files = event.target.files;
-      const preview = document.getElementById('multiImagePreview');
-      preview.innerHTML = ''; // Clear previous images
-
-      if(files.length === 0) return;
-
-      for(let i=0; i<files.length; i++) {
-        const file = files[i];
-        if(!file.type.startsWith('image/')) continue;
-
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          const img = document.createElement('img');
-          img.src = e.target.result;
-          img.alt = 'Uploaded image ' + (i+1);
-          preview.appendChild(img);
-        }
-        reader.readAsDataURL(file);
-      }
-    }
-
-    // Countdown Logic
+    // Countdown
     const anniversaryDate = new Date("2025-05-12T00:00:00");
     const countdownEl = document.getElementById("countdown");
 
@@ -306,12 +229,17 @@
       const minutes = Math.floor((diff / (1000 * 60)) % 60);
       const seconds = Math.floor((diff / 1000) % 60);
 
-      if(countdownEl)
-        countdownEl.innerHTML = `${prefix} ${days}d ${hours}h ${minutes}m ${seconds}s`;
+      countdownEl.innerHTML = `${prefix} ${days}d ${hours}h ${minutes}m ${seconds}s`;
     }
 
     updateCountdown();
     setInterval(updateCountdown, 1000);
-  </script>
-</body>
-</html>
+
+    // Image Upload with Local Storage
+    function handleImageUpload(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const img = document.createElement("img");
+         
