@@ -114,10 +114,17 @@
       margin-top: 20px;
     }
 
-    #imagePreview img {
+    #imagePreview img,
+    #multiImagePreview img {
       max-width: 100%;
       margin-top: 20px;
       border-radius: 10px;
+    }
+
+    #multiImagePreview img {
+      max-width: 48%;
+      margin: 1%;
+      display: inline-block;
     }
 
     #passwordPage {
@@ -188,7 +195,7 @@
     </div>
   </div>
 
-  <!-- Photo Page -->
+  <!-- Photo Page (single image) -->
   <div class="page" id="page2">
     <h2>Special Memories 📸</h2>
     <p>Select a photo to add to our diary:</p>
@@ -196,6 +203,18 @@
     <div id="imagePreview"></div>
     <div class="nav">
       <button onclick="goToPage(1)">← Back</button>
+      <button onclick="goToPage(4)">Next →</button>
+    </div>
+  </div>
+
+  <!-- Multi-photo upload page -->
+  <div class="page" id="page4">
+    <h2>More Memories Together 📷</h2>
+    <p>Upload multiple pictures to add more love to our diary:</p>
+    <input type="file" accept="image/*" multiple onchange="previewMultipleImages(event)">
+    <div id="multiImagePreview"></div>
+    <div class="nav">
+      <button onclick="goToPage(2)">← Back</button>
       <button onclick="goToPage(3)">Next →</button>
     </div>
   </div>
@@ -209,7 +228,7 @@
     <p style="font-size: 1.4em; text-align: center; color: #e91e63;"><strong>I love you sooo much ❤️</strong></p>
     <div class="signature">Yours always,<br>💖</div>
     <div class="nav">
-      <button onclick="goToPage(2)">← Back</button>
+      <button onclick="goToPage(4)">← Back</button>
     </div>
   </div>
 
@@ -233,6 +252,8 @@
       const pages = document.querySelectorAll('.page');
       pages.forEach(page => page.classList.remove('active'));
       document.getElementById('page' + n).classList.add('active');
+      // Scroll top when page changes
+      window.scrollTo(0,0);
     }
 
     function previewImage(event) {
@@ -244,10 +265,53 @@
       reader.readAsDataURL(event.target.files[0]);
     }
 
+    function previewMultipleImages(event) {
+      const files = event.target.files;
+      const preview = document.getElementById('multiImagePreview');
+      preview.innerHTML = ''; // Clear previous images
+
+      if(files.length === 0) return;
+
+      for(let i=0; i<files.length; i++) {
+        const file = files[i];
+        if(!file.type.startsWith('image/')) continue;
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const img = document.createElement('img');
+          img.src = e.target.result;
+          img.alt = 'Uploaded image ' + (i+1);
+          preview.appendChild(img);
+        }
+        reader.readAsDataURL(file);
+      }
+    }
+
     // Countdown Logic
     const anniversaryDate = new Date("2025-05-12T00:00:00");
     const countdownEl = document.getElementById("countdown");
 
     function updateCountdown() {
       const now = new Date();
-      let diff = anniversary
+      let diff = anniversaryDate - now;
+      let prefix = "Time until our anniversary: ";
+
+      if (diff < 0) {
+        diff = now - anniversaryDate;
+        prefix = "Time since our anniversary: ";
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      if(countdownEl)
+        countdownEl.innerHTML = `${prefix} ${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
