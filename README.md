@@ -198,14 +198,15 @@
   <!-- Photo Page (single image) -->
   <div class="page" id="page2">
     <h2>Special Memories 📸</h2>
-    <p>Select a photo to add to our diary:</p>
-    <input type="file" accept="image/*" onchange="previewImage(event)">
-    <div id="imagePreview"></div>
-    <div class="nav">
-      <button onclick="goToPage(1)">← Back</button>
-      <button onclick="goToPage(4)">Next →</button>
-    </div>
-  </div>
+<p>Here's one of our favorite memories together:</p>
+
+<!-- 💖 Permanent photo -->
+<img src=<img width="1080" height="1706" alt="fingure-love png" src="https://github.com/user-attachments/assets/92ae5373-cf3c-4da8-8dc0-ad52de0d0f5a" />
+ alt="Us together" style="width: 100%; max-width: 500px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 30px;">
+
+<p>Select a photo to add to our diary:</p>
+<input type="file" accept="image/*" onchange="previewImage(event)">
+<div id="imagePreview"></div>
 
   <!-- Multi-photo upload page -->
   <div class="page" id="page4">
