@@ -189,17 +189,27 @@
   </div>
 
   <!-- Photo Page -->
-  <div class="page" id="page2">
-    <h2>Special Memories 📸</h2>
-<p>Here's one of our favorite memories together:</p>
+<div class="page" id="page2">
+  <h2>Special Memories 📸</h2>
+  <p>Here's one of our favorite memories together:</p>
 
-<!-- 💖 Permanent photo -->
-<img src=<img width="1080" height="1706" alt="fingure-love png" src="https://github.com/user-attachments/assets/34faf0b8-7df6-40f9-bf37-026ff76073a5" />
- alt="Us together" style="width: 100%; max-width: 500px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 30px;">
+  <!-- 💖 Permanent photo -->
+  <img 
+    src=https://i.postimg.cc/MKm7FrZC/Screenshot-2025-0618-142257.png/assets/34faf0b8-7df6-40f9-bf37-026ff76073a5" 
+    alt="Us together" 
+    style="width: 100%; max-width: 500px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 30px;"
+  >
 
-<p>Select a photo to add to our diary:</p>
-<input type="file" accept="image/*" onchange="previewImage(event)">
-<div id="imagePreview"></div>
+  <p>Select a photo to add to our diary:</p>
+  <input type="file" accept="image/*" onchange="previewImage(event)">
+  <div id="imagePreview"></div>
+
+  <div class="nav">
+    <button onclick="goToPage(1)">← Back</button>
+    <button onclick="goToPage(3)">Next →</button>
+  </div>
+</div>
+
 
   <!-- Final Letter -->
   <div class="page" id="page3">
