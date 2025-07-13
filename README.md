@@ -193,14 +193,14 @@
   <h2>Special Memories 📸</h2>
   <p>Here's one of our favorite memories together:</p>
 
-  <!-- 💖 Permanent photo -->
+  <!-- 💖 Permanent image -->
   <img 
-    src=https://i.postimg.cc/MKm7FrZC/Screenshot-2025-0618-142257.png/assets/34faf0b8-7df6-40f9-bf37-026ff76073a5" 
+    src=https://i.postimg.cc/MKm7FrZC/Screenshot-2025-0618-142257.png 
     alt="Us together" 
     style="width: 100%; max-width: 500px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 30px;"
   >
 
-  <p>Select a photo to add to our diary:</p>
+  <p>You can also add another photo here:</p>
   <input type="file" accept="image/*" onchange="previewImage(event)">
   <div id="imagePreview"></div>
 
@@ -250,7 +250,7 @@
       const reader = new FileReader();
       reader.onload = function() {
         const output = document.getElementById('imagePreview');
-        output.innerHTML = `<img src="${reader.result}" alt="Uploaded image">`;
+        output.innerHTML = <img src="${reader.result}" alt="Uploaded image">;
       };
       reader.readAsDataURL(event.target.files[0]);
     }
