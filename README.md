@@ -238,62 +238,7 @@
   </audio>
 
   <script>
-    function checkPassword() {
-      const input = document.getElementById('passwordInput').value;
-      if (input === "nidhu") {
-        document.getElementById("passwordPage").style.display = "none";
-        document.getElementById("page0").classList.add("active");
-      } else {
-        alert("Wrong password 💔");
-      }
-    }
-
-    function goToPage(n) {
-      const pages = document.querySelectorAll('.page');
-      pages.forEach(page => page.classList.remove('active'));
-      document.getElementById('page' + n).classList.add('active');
-      // Scroll top when page changes
-      window.scrollTo(0,0);
-    }
-
-    function previewImage(event) {
-      const reader = new FileReader();
-      reader.onload = function() {
-        const output = document.getElementById('imagePreview');
-        output.innerHTML = `<img src="${reader.result}" alt="Uploaded image">`;
-      };
-      reader.readAsDataURL(event.target.files[0]);
-    }
-
-    function previewMultipleImages(event) {
-      const files = event.target.files;
-      const preview = document.getElementById('multiImagePreview');
-      preview.innerHTML = ''; // Clear previous images
-
-      if(files.length === 0) return;
-
-      for(let i=0; i<files.length; i++) {
-        const file = files[i];
-        if(!file.type.startsWith('image/')) continue;
-
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          const img = document.createElement('img');
-          img.src = e.target.result;
-          img.alt = 'Uploaded image ' + (i+1);
-          preview.appendChild(img);
-        }
-        reader.readAsDataURL(file);
-      }
-    }
-
-    // Countdown Logic
-    const anniversaryDate = new Date("2025-05-12T00:00:00");
-    const countdownEl = document.getElementById("countdown");
-
-    function updateCountdown() {
-      const now = new Date();
-      let diff = anniversaryDate - now;
+          let diff = anniversaryDate - now;
       let prefix = "Time until our anniversary: ";
 
       if (diff < 0) {
@@ -306,12 +251,32 @@
       const minutes = Math.floor((diff / (1000 * 60)) % 60);
       const seconds = Math.floor((diff / 1000) % 60);
 
-      if(countdownEl)
-        countdownEl.innerHTML = `${prefix} ${days}d ${hours}h ${minutes}m ${seconds}s`;
+      countdownEl.innerHTML = `${prefix} ${days}d ${hours}h ${minutes}m ${seconds}s`;
     }
 
     updateCountdown();
     setInterval(updateCountdown, 1000);
+
+    // Keep photo saved using localStorage
+    window.onload = function() {
+      const savedImage = localStorage.getItem("savedImage");
+      if (savedImage) {
+        document.getElementById('imagePreview').innerHTML = `<img src="${savedImage}" alt="Saved image">`;
+      }
+    };
+
+    function previewImage(event) {
+      const reader = new FileReader();
+      reader.onload = function () {
+        const imageUrl = reader.result;
+        const output = document.getElementById('imagePreview');
+        output.innerHTML = `<img src="${imageUrl}" alt="Uploaded image">`;
+        localStorage.setItem("savedImage", imageUrl);
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  </script>
+
   </script>
 </body>
 </html>
